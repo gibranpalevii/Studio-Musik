@@ -1,14 +1,22 @@
 <!DOCTYPE html>
-<html lang="id">
-<head>
-  <meta charset="UTF-8">
-  <title>Studio Musik</title>
-  <link rel="stylesheet" href="/assets/app.css">
-</head>
+<html>
 <body>
 
-<h1>Studio Musik</h1>
+<h1>Data Musik</h1>
+<ul id="list"></ul>
 
-<script src="/assets/app.js"></script>
+<script>
+fetch('/api/musik')
+  .then(res => res.json())
+  .then(data => {
+    const list = document.getElementById('list');
+    data.forEach(item => {
+      const li = document.createElement('li');
+      li.textContent = item.nama_lagu;
+      list.appendChild(li);
+    });
+  });
+</script>
+
 </body>
 </html>
